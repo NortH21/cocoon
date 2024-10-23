@@ -44,7 +44,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t "${IMAGE}:latest" ./docker/nginx/Dockerfile
+          docker build -t "${IMAGE}:latest" /home/runner/work/cocoon/cocoon/docker/nginx/Dockerfile
           docker tag "${IMAGE}:latest" "${IMAGE}:$(date +%Y%m%d%H%M)"
       
       - name: Push Docker image
