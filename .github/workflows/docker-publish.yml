@@ -44,7 +44,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t "${IMAGE}:latest" -f ./docker/nginx/Dockerfile
+          docker build -t "${IMAGE}:latest" -f ./docker/nginx/Dockerfile ./docker/nginx
           docker tag "${IMAGE}:latest" "${IMAGE}:$(date +%Y%m%d%H%M)"
       
       - name: Push Docker image
