@@ -44,10 +44,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          pwd
-          ls -la ./docker/nginx/Dockerfile
-          ls -la /home/runner/work/cocoon/cocoon/docker/nginx/Dockerfile
-          docker build -t "${IMAGE}:latest" /home/runner/work/cocoon/cocoon/docker/nginx/Dockerfile
+          docker build -t "${IMAGE}:latest" -f ./docker/nginx/Dockerfile
           docker tag "${IMAGE}:latest" "${IMAGE}:$(date +%Y%m%d%H%M)"
       
       - name: Push Docker image
