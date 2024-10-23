@@ -42,17 +42,11 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and Push Docker image
+      - name: Build Docker image
         run: |
-            for i in $(find . -name 'Dockerfile'); do
-                IMAGE=$(basename $(dirname $i))
-
-                if [ "$IMAGE" = "nginx" ]; then
-                    IMAGE="certbot-nginx"
-                fi
-
-                docker build -t "${IMAGE}:latest" "$i"
-                docker tag "${IMAGE}:latest" "${IMAGE}:$(date +%Y%m%d%H%M)"
-                docker push -a "${IMAGE}"
-            done
-
+          docker build -t "${IMAGE}:latest" ./docker/nginx/Dockerfile
+          docker tag "${IMAGE}:latest" "${IMAGE}:$(date +%Y%m%d%H%M)"
+      
+      - name: Push Docker image
+        run: |
+          docker push -a "${IMAGE}"
